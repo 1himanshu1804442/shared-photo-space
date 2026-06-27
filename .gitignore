@@ -1,0 +1,30 @@
+# IDEs and Editors
+.idea/
+.vscode/
+*.iml
+*.iws
+
+# OS Generated
+.DS_Store
+Thumbs.db
+
+# Java / Maven (for backend)
+backend/target/
+backend/pom.xml.tag
+backend/pom.xml.releaseBackup
+backend/pom.xml.versionsBackup
+backend/pom.xml.next
+backend/release.properties
+backend/dependency-reduced-pom.xml
+backend/buildNumber.properties
+backend/.mvn/timing.properties
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Custom agents file (optional, but good practice to commit if we want state tracked)
+# !.agents/
