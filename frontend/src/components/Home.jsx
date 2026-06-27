@@ -75,7 +75,7 @@ export default function Home() {
             <form onSubmit={handleJoin}>
               <input type="text" placeholder="Your Name" value={name} onChange={e => setName(e.target.value)} required />
               <input type="tel" placeholder="Phone Number" value={phone} onChange={e => setPhone(e.target.value)} required />
-              <input type="text" placeholder="6-Digit Join Code" value={joinCode} onChange={e => setJoinCode(e.target.value)} maxLength={6} required style={{ textAlign: 'center', letterSpacing: '2px', fontSize: '1.2rem', fontWeight: 'bold' }} />
+              <input type="text" placeholder="6-Digit Join Code" value={joinCode} onChange={e => setJoinCode(e.target.value)} maxLength={6} required />
               <button type="submit" style={{ marginTop: '0.5rem' }}>Join Gallery</button>
             </form>
           </motion.div>
