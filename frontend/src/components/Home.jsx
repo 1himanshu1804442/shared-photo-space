@@ -7,18 +7,20 @@ import { motion } from 'framer-motion';
 export default function Home() {
   const navigate = useNavigate();
   const [joinCode, setJoinCode] = useState('');
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [joinName, setJoinName] = useState('');
+  const [joinPhone, setJoinPhone] = useState('');
+  const [createName, setCreateName] = useState('');
+  const [createPhone, setCreatePhone] = useState('');
   const [eventName, setEventName] = useState('');
 
   const handleJoin = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post(`/api/events/${joinCode}/join`, {
-        name,
-        phoneNumber: phone
+        name: joinName,
+        phoneNumber: joinPhone
       });
-      navigate(`/event/${joinCode}`, { state: { user: res.data.participants.find(p => p.user.phoneNumber === phone)?.user } });
+      navigate(`/event/${joinCode}`, { state: { user: res.data.participants.find(p => p.user.phoneNumber === joinPhone)?.user } });
     } catch (err) {
       alert("Invalid join code or error joining.");
     }
@@ -29,8 +31,8 @@ export default function Home() {
     try {
       const res = await axios.post('/api/events', {
         name: eventName,
-        hostName: name,
-        hostPhoneNumber: phone
+        hostName: createName,
+        hostPhoneNumber: createPhone
       });
       navigate(`/event/${res.data.joinCode}`, { state: { user: res.data.host } });
     } catch (err) {
@@ -73,8 +75,8 @@ export default function Home() {
             </div>
             <h2 style={{ marginBottom: '1.5rem' }}>Join an Event</h2>
             <form onSubmit={handleJoin}>
-              <input type="text" placeholder="Your Name" value={name} onChange={e => setName(e.target.value)} required />
-              <input type="tel" placeholder="Phone Number" value={phone} onChange={e => setPhone(e.target.value)} required />
+              <input type="text" placeholder="Your Name" value={joinName} onChange={e => setJoinName(e.target.value)} required />
+              <input type="tel" placeholder="Phone Number" value={joinPhone} onChange={e => setJoinPhone(e.target.value)} required />
               <input type="text" placeholder="6-Digit Join Code" value={joinCode} onChange={e => setJoinCode(e.target.value)} maxLength={6} required />
               <button type="submit" style={{ marginTop: '0.5rem' }}>Join Gallery</button>
             </form>
@@ -95,8 +97,8 @@ export default function Home() {
             </div>
             <h2 style={{ marginBottom: '1.5rem' }}>Create an Event</h2>
             <form onSubmit={handleCreate}>
-              <input type="text" placeholder="Your Name" value={name} onChange={e => setName(e.target.value)} required />
-              <input type="tel" placeholder="Phone Number" value={phone} onChange={e => setPhone(e.target.value)} required />
+              <input type="text" placeholder="Your Name" value={createName} onChange={e => setCreateName(e.target.value)} required />
+              <input type="tel" placeholder="Phone Number" value={createPhone} onChange={e => setCreatePhone(e.target.value)} required />
               <input type="text" placeholder="Event Name (e.g. Goa Trip)" value={eventName} onChange={e => setEventName(e.target.value)} required />
               <button type="submit" className="primary-gradient" style={{ marginTop: '0.5rem' }}>Create Event</button>
             </form>
