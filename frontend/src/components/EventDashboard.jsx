@@ -30,7 +30,10 @@ export default function EventDashboard() {
 
   const fetchPhotos = async () => {
     try {
-      const res = await axios.get(`/api/photos/event/${event.id}`);
+      const token = localStorage.getItem('token');
+      const res = await axios.get(`/api/photos/event/${event.id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setPhotos(res.data);
     } catch (err) {
       console.log("Error fetching photos", err);
@@ -49,8 +52,12 @@ export default function EventDashboard() {
       formData.append('uploaderId', currentUserId);
 
       try {
+        const token = localStorage.getItem('token');
         await axios.post('/api/photos/upload', formData, {
-          headers: { 'Content-Type': 'multipart/form-data' }
+          headers: { 
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`
+          }
         });
       } catch (err) {
         console.error("Failed to upload file", files[i].name);

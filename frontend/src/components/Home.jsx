@@ -20,7 +20,8 @@ export default function Home() {
         name: joinName,
         phoneNumber: joinPhone
       });
-      navigate(`/event/${joinCode}`, { state: { user: res.data.participants.find(p => p.user.phoneNumber === joinPhone)?.user } });
+      localStorage.setItem('token', res.data.token);
+      navigate(`/event/${joinCode}`, { state: { user: res.data.event.participants.find(p => p.user.phoneNumber === joinPhone)?.user } });
     } catch (err) {
       alert("Invalid join code or error joining.");
     }
@@ -34,7 +35,8 @@ export default function Home() {
         hostName: createName,
         hostPhoneNumber: createPhone
       });
-      navigate(`/event/${res.data.joinCode}`, { state: { user: res.data.host } });
+      localStorage.setItem('token', res.data.token);
+      navigate(`/event/${res.data.event.joinCode}`, { state: { user: res.data.event.host } });
     } catch (err) {
       alert("Error creating event.");
     }

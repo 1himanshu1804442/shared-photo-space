@@ -8,30 +8,36 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.sharedphoto.backend.dto.AuthResponse;
+import com.sharedphoto.backend.security.JwtUtil;
+
 @RestController
 @RequestMapping("/api/events")
 @RequiredArgsConstructor
 public class EventController {
 
     private final EventService eventService;
+    private final JwtUtil jwtUtil;
 
     @PostMapping
-    public ResponseEntity<Event> createEvent(@RequestBody CreateEventRequest request) {
+    public ResponseEntity<AuthResponse> createEvent(@RequestBody CreateEventRequest request) {
         Event event = eventService.createEvent(
                 request.getName(), 
                 request.getHostPhoneNumber(), 
                 request.getHostName()
         );
-        return ResponseEntity.ok(event);
+        String token = jwtUtil.generateToken(request.getHostPhoneNumber());
+        return ResponseEntity.ok(new AuthResponse(token, event));
     }
 
     @PostMapping("/{joinCode}/join")
-    public ResponseEntity<Event> joinEvent(@PathVariable String joinCode, @RequestBody JoinEventRequest request) {
+    public ResponseEntity<AuthResponse> joinEvent(@PathVariable String joinCode, @RequestBody JoinEventRequest request) {
         Event event = eventService.joinEvent(
                 joinCode, 
                 request.getPhoneNumber(), 
                 request.getName()
         );
-        return ResponseEntity.ok(event);
+        String token = jwtUtil.generateToken(request.getPhoneNumber());
+        return ResponseEntity.ok(new AuthResponse(token, event));
     }
 }
