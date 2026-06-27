@@ -17,31 +17,31 @@ The architecture is built for speed, scale, and cross-platform accessibility.
 
 ## 🚀 Version 1 Launch Roadmap
 
-We are laser-focused on delivering a rock-solid core experience before moving on to advanced AI features.
+We are aggressively prioritizing features that acquire and retain users before focusing on infrastructure.
 
-### Phase 1: Infrastructure Foundations (Current)
-- [ ] Implement Environment Variables (JWT, DB, CORS)
-- [ ] Implement Global Exception Handler
-- [ ] Add Swagger/OpenAPI Documentation
-- [ ] Add Structured Logging
-- [ ] Add Rate Limiting
-
-### Phase 2: Core Experience Refinement
-- [ ] Phone OTP Authentication Flow (Backend + Frontend UI)
-- [ ] Account Creation & Login
-- [ ] Event Creation & Joining
+### Phase 1: Get People Using It
+These features determine whether someone can actually use the app on a trip or at an event.
+- [ ] Authentication (Login / Register)
+- [ ] Create Event & Join Event
 - [ ] Invite Links
+- [ ] Event Members List & Event Covers
+- [ ] Upload Photos, Photo Download, and Shared Gallery
 
-### Phase 3: Gallery & Media
-- [ ] StorageService Abstraction (Local Storage MVP)
-- [ ] Photo Upload with Progress Indicators
-- [ ] Shared Gallery View
-- [ ] Photo Download
-
-### Phase 4: Launch Prep
+### Phase 2: Make It Feel Good
+UX polish that users notice immediately.
+- [ ] Upload Progress & Background Uploads
+- [ ] Image Compression
 - [ ] Basic Notifications
-- [ ] Deployment Configuration (Docker/Cloud)
-- [ ] Analytics Integration (PostHog/Firebase)
+
+### Phase 3: Infrastructure (Production Readiness)
+- [ ] Environment Variables (JWT, DB, CORS)
+- [ ] Global Exception Handler & Structured Logging
+- [ ] Swagger/OpenAPI & Rate Limiting
+
+### Phase 4: Deployment & Release
+- [ ] Docker & Cloud Deployment
+- [ ] Analytics (PostHog / Firebase)
+- [ ] Crash Reporting (Crashlytics / Sentry)
 
 ## 🛠️ Local Development Setup
 
